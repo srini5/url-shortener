@@ -12,7 +12,7 @@ express.get("/:num", function(req, res){
     mongo.connect(url, function(err, db){
         if(err) throw err;
         
-        var shortUrl = "https://warm-reef-87592.herokuapp.com/" + req.params.num;
+        var shortUrl = req.params.num;
         
         db.collection('links').find({
                 "short" : shortUrl
@@ -20,9 +20,14 @@ express.get("/:num", function(req, res){
                 if (err) throw err;
                 
                 console.log("found doc:" + docs[0]);
-                
-                var longUrl = docs[0].long;
-                res.redirect(longUrl); // redirect to the stored url
+                if(docs.length > 0){
+                    var longUrl = docs[0].long;
+                    res.redirect(longUrl); // redirect to the stored url
+                }else{
+                    res.writeHead(200, {"Content-Type":"text/json"});
+                    res.write(JSON.stringify({"error":"This url is not present in the database."}));
+                    res.end();
+                }
             });
         });
 }).get("/new/*/", function(req, res){
@@ -88,7 +93,5 @@ express.get("/:num", function(req, res){
                         });
                     }
             });
-        
-            
     });
 }).listen(process.env.PORT || 8080);
