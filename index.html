@@ -6,7 +6,7 @@
     <h1>Welcome to my 'URL shortener MS' page</h1>
 
             
-<p>This is a microservice which shortens the new URLs that are passed in, and redirects requests sent to these shortneed URLs to the right URLs </p>
+<p>This is a microservice which shortens the new URLs that are passed in, and redirects requests sent to these shortened URLs to the right URLs </p>
 
 <h3>
 Example usage:</h3>
@@ -52,13 +52,11 @@ Following user stories are covered in this microservice:
 <p>
 <ul>
     <li>
-User Story 1: I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).        
-    </li>
-    <li>
-User Story 2: If it does, it returns both the Unix timestamp and the natural language form of that date.        
-    </li>
-    <li>
-User Story 3: If it does not contain a date or Unix timestamp, it returns null for those properties.        
+User Story 1: I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
+    </li><li>
+User Story: If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
+    </li><li>
+User Story: When I visit that shortened URL, it will redirect me to my original link.
     </li>
 </ul>
 </p>
