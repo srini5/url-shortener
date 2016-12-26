@@ -58,7 +58,7 @@ express.get("/:num", function(req, res){
         
                     var responseStr = {
                         "original_url": longUrl,
-                        "short_url": shortUrlSuffix
+                        "short_url": "https://warm-reef-87592.herokuapp.com/" + shortUrlSuffix
                     };
                 
                     console.log("prepared response: " + JSON.stringify(responseStr));
