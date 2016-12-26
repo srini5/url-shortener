@@ -100,4 +100,6 @@ express.get("/:num", function(req, res){
                     }
             });
     });
+}).get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
 }).listen(process.env.PORT || 8080);

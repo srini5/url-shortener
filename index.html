@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title> URL shortener microservice</title>
+    </head>
+    <body>
+    <h1>Welcome to my 'URL shortener MS' page</h1>
+
+            
+<p>This is a microservice which shortens the new URLs that are passed in, and redirects requests sent to these shortneed URLs to the right URLs </p>
+
+<h3>
+Example usage:</h3>
+
+<p>
+<ol>
+    <li>
+        Pass in a new URL to be stored, and get back the shortened URL corresponding to this URL:
+        (pass with a '/new/' route specified in the URL)
+        <pre>
+        e.g:
+        https://warm-reef-87592.herokuapp.com/new/http://www.freecodecamp.com/
+        {"original_url":"http://www.freecodecamp.com/","short_url":"https://warm-reef-87592.herokuapp.com/1482780504987"}
+        </pre>
+    </li>
+    <li>
+        Use one of the existing shortened URLs to get redirected to the corresponding page
+        <pre>
+        e.g:
+        https://warm-reef-87592.herokuapp.com/1482780504987
+        will redirect to 
+        http://www.freecodecamp.com
+        </pre>
+    </li>
+    <li>
+        Use one of the non-existing short URLs (i.e. specify anumber which doesn't exist in the db)
+        This will elicit an error response from this microservice
+        <pre>
+        e.g:
+        https://warm-reef-87592.herokuapp.com/14827805049875345353453
+        {"error":"This url is not present in the database."}
+        </pre>
+    </li>
+    <li>
+        Any other URL patterns than the ones specified above, are not being listened for, and will result in errors.
+    </li>
+</ol>
+</p>
+
+<h3>
+Following user stories are covered in this microservice: 
+</h3>
+<p>
+<ul>
+    <li>
+User Story 1: I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).        
+    </li>
+    <li>
+User Story 2: If it does, it returns both the Unix timestamp and the natural language form of that date.        
+    </li>
+    <li>
+User Story 3: If it does not contain a date or Unix timestamp, it returns null for those properties.        
+    </li>
+</ul>
+</p>
+    </body>
+    
+</html>
