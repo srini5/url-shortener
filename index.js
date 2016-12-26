@@ -15,7 +15,7 @@ express.get("/:num", function(req, res){
         var shortUrl = req.params.num;
         
         db.collection('links').find({
-                "short" : shortUrl
+                "short" : "" + shortUrl
             }).toArray(function (err, docs){
                 if (err) throw err;
                 
@@ -29,6 +29,7 @@ express.get("/:num", function(req, res){
                     res.end();
                 }
             });
+        db.close();
         });
 }).get("/new/*/", function(req, res){
 
@@ -45,7 +46,7 @@ express.get("/:num", function(req, res){
         if(err) throw err;
        
         db.collection('links').find({
-            "long": longUrl
+            "long": "" + longUrl
             }).toArray(function (err, docs){
                  if (err) throw err;
                  console.log("found doc:" + docs);
@@ -72,9 +73,14 @@ express.get("/:num", function(req, res){
                     shortUrlSuffix = Date.now();
                     console.log("Generated smallurl: "+ shortUrlSuffix);
                     
+                    console.log(("Inserted the following: "+ JSON.stringify({
+                        "short" : "" + shortUrlSuffix,
+                        "long" : "" + longUrl
+                        })));
+                    
                     db.collection('links').insert({
-                        "short" : shortUrlSuffix,
-                        "long" : longUrl
+                        "short" : "" + shortUrlSuffix,
+                        "long" : "" + longUrl
                         }, function(err, data){
                             if(err) throw err;
                             
