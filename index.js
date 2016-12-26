@@ -8,12 +8,11 @@ express.get("/new/:protocol//:url", function(req, res){
     console.log("received for insert: "+ req.params.url);
     
     var shortUrl = "", longUrl = req.params.protocol + "//" + req.params.url;
-    
     var linkRecord = lookup(req.params.url, false); 
     if(linkRecord){
-        shortUrl = linkRecord.short;
-        longUrl = linkRecord.long;
-        console.log("Value already exists in DB: " + linkRecord);    
+        shortUrl = linkRecord[0].short;
+        longUrl = linkRecord[0].long;
+        console.log("Value already exists in DB: " + linkRecord[0]);    
         
     }else{
         
@@ -63,11 +62,11 @@ express.get("/new/:protocol//:url", function(req, res){
     
     console.log("received for lookup: "+ req.params.num);
     
-    var longUrl = lookup(req.params.num, true); 
+    var links = lookup(req.params.num, true); 
     
-    console.log("long url is: "+ longUrl);
+    console.log("long url is: "+ links[0]);
     
-}).listen(process.config.port || 8080);
+}).listen(process.env.PORT || 8080);
 
 
 function lookup(link, isKey){
